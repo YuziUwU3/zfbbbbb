@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <!-- 添加 viewport-fit=cover 强制铺满刘海屏区域 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <!-- 状态栏/刘海屏区域背景色设为白色 -->
+    <meta name="theme-color" content="#ffffff">
+    <!-- iOS 沉浸式全屏支持 (添加到主屏幕后生效) -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <!-- Android 沉浸式支持 -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>互动界面</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 主背景和交互区域 -->
+    <div id="main-container">
+        <!-- 头像触摸点 -->
+        <div id="avatar-hotspot" class="hotspot"></div>
+        <!-- 昵称触摸点 -->
+        <div id="nickname-hotspot" class="hotspot"></div>
+    </div>
+
+    <!-- 遮罩层，用于在滑入时使背景变暗 -->
+    <div id="overlay"></div>
+
+    <!-- 保存设置按钮（仅在设置模式下显示） -->
+    <button id="save-settings-btn">保存触摸点设置</button>
+
+    <!-- 头像详情全屏面板 -->
+    <div id="avatar-panel" class="full-panel">
+        <img src="https://i.uuze.cn/uploads/2026/08/20/26315b2343a34b4f86d43bd45b28e8c1.png" alt="头像详情">
+    </div>
+
+    <!-- 昵称详情全屏面板 -->
+    <div id="nickname-panel" class="full-panel">
+        <img src="https://i.uuze.cn/uploads/2026/08/20/1ae1a0fae7ed124d89dadb8299cf16b8.png" alt="昵称详情">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

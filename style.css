@@ -1,0 +1,123 @@
+/* 基本重置和全局样式 */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden; /* 防止页面滚动 */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #ffffff; /* 兼容刘海屏，将边缘底色设为白色 */
+}
+
+/* 主容器，包含背景图 */
+#main-container {
+    width: 100%;
+    height: 100%;
+    background-image: url('https://i.uuze.cn/uploads/2026/08/20/37a77e669f75a43b84ba184f9e562ce2.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+/* 触摸点（热区）基础样式 */
+.hotspot {
+    position: absolute;
+    /* 默认不可见，只响应点击 */
+    background-color: transparent;
+    border: none;
+}
+
+/* 编辑模式下触摸点的样式 (双击后显示) */
+body.edit-mode .hotspot {
+    background-color: rgba(255, 69, 0, 0.5); /* 半透明红色，方便拖拽 */
+    border: 2px dashed #ffffff;
+    cursor: move;
+    z-index: 100;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+/* 头像热区初始位置和大小 */
+#avatar-hotspot {
+    top: 100px;
+    left: 50px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+/* 昵称热区初始位置和大小 */
+#nickname-hotspot {
+    top: 200px;
+    left: 50px;
+    width: 150px;
+    height: 40px;
+}
+
+/* 遮罩层样式（推入时背景变暗） */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+    pointer-events: none;
+}
+
+#overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 全屏推入面板样式 (支付宝交互效果) */
+.full-panel {
+    position: fixed;
+    top: 0;
+    right: -120vw; /* 初始状态在屏幕右侧更远一点，防止阴影漏出到主界面 */
+    width: 100vw; /* 强制全屏宽度 */
+    height: 100vh; /* 强制全屏高度 */
+    background-color: #000;
+    box-shadow: -10px 0 20px rgba(0,0,0,0.3); /* 左侧阴影，体现推入层次感 */
+    transition: right 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* 平滑滑入动画 */
+    z-index: 20;
+}
+
+.full-panel.active {
+    right: 0; /* 滑入屏幕完全覆盖全屏 */
+}
+
+/* 全屏面板中的图片样式 */
+.full-panel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 自动匹配手机全屏强制全屏，不改变比例 */
+    display: block;
+}
+
+/* 保存设置按钮 */
+#save-settings-btn {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #1677ff; /* 支付宝蓝 */
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 4px 12px rgba(22, 119, 255, 0.4);
+    z-index: 101;
+    display: none; /* 默认隐藏 */
+}
+
+/* 仅在编辑模式下显示保存按钮 */
+body.edit-mode #save-settings-btn {
+    display: block;
+}
